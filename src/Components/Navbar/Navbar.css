@@ -1,0 +1,18 @@
+.Navbar{
+    background: black;
+    color: white;
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.Navbar-l{
+    font-size: 2rem;
+}
+.Navbar-r{
+    display: flex;
+    font-size: 1.1rem;
+}
+.Navbar-r>div{
+    margin-right: 1.5rem;
+}
