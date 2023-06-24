@@ -32,7 +32,7 @@ const BlogsDashboard = () => {
     
   return (
     <div className='BlogDashboard'>
-        <div>Latest Posts</div>
+        <div className='BlogDashboard-head'>Latest Posts</div>
         <div className='BlogPosts'>
         {blogPosts.length !== 0 && currentPosts.map((blog)=>(
         <BlogCard id={blog.id} title={blog.title} author={authors[(blog.id-1)%10]} content={blog.body} />

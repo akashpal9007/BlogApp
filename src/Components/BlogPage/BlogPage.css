@@ -43,6 +43,8 @@
     border-radius: 20px;
     background: black;
     color: white;
+    text-decoration: none;
+    color: white;
 }
 .btn-fav{
     padding: 0.7rem;

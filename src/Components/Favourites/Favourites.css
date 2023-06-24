@@ -1,0 +1,15 @@
+.Fav-head{
+    margin: 1rem 0;
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+.fav-blogCard-p{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.Fav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

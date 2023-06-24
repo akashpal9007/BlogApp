@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import './BlogPage.css'
 import Navbar from '../Navbar/Navbar'
 import user from '../../assets/account.png'
@@ -10,17 +10,17 @@ const BlogPage = () => {
   const [blog, setBlog] = useState();
   const [authors, setAuthors] = useState([]);
   const [comments, setComments] = useState([]);
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [comment, setComment] = useState();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [comment, setComment] = useState('');
+  const [fav, setFav] = useState(false)
 
   const fetchPost = async () => {
     const res = await axios.get(
       `https://jsonplaceholder.typicode.com/posts/${id}`
     );
     setBlog(res.data);
-  };
-
+};
   const fetchAuthors = async () => {
     const res = await axios.get(`https://jsonplaceholder.typicode.com/users`);
     let auth = res.data.map((user)=>{
@@ -41,13 +41,13 @@ const BlogPage = () => {
     if(name !== '' && name !== undefined && email !== '' && email !== undefined  && comment !== '' && comment !== undefined ){
         if(/\S+@\S+\.\S+/.test(email)){
           let newComment = {
+            postId:id,
             id:comments.length+1,
             name: name,
             email: email,
             body: comment
           }       
-          let newData = [newComment,...comments]
-          setComments(newData);  
+          setComments([newComment,...comments]); 
         }else{
             alert('please enter correct email')
         }
@@ -56,19 +56,45 @@ const BlogPage = () => {
     }
   }
 
+  
+    const handleFav = () => {
+        let localStoragePosts = JSON.parse(localStorage.getItem("favPosts")) || [];
+        if(fav==true){
+          localStoragePosts = localStoragePosts.filter((post)=>{
+              return post.id !== blog.id;
+          })
+            setFav(false);
+        }else{
+            localStoragePosts.push(blog)
+            setFav(true);
+        }
+        localStorage.setItem("favPosts", JSON.stringify(localStoragePosts))
+  }
+
+  const checkFav = () => {
+        let localStoragePosts = (localStorage.getItem("favPosts")) || [];
+        if(localStoragePosts.includes(JSON.stringify(blog))){
+            setFav(true);
+        }
+    
+  }
+
   useEffect(() => {
     fetchPost();
     fetchAuthors();
     fetchComments();
-  }, []);
+}, []);
+useEffect(()=>{
+    checkFav(); 
+},[blog])
 
   return (
     <>
     <Navbar />
     <div className="blogPage">
         <div className="blogPage-Topbtn">
-            <button className="btn-home">Home</button>
-            <button className="btn-fav">Add to Favourites</button>
+            <button className="btn-home"><Link to='/' style={{textDecoration:"none", color:"white"}}>Go Home</Link></button>
+            <button className="btn-fav" onClick={handleFav}>{fav?"Remove from Favourites":"Add to Favourites"}</button>
         </div>
       {blog !== undefined ? (
         <>
