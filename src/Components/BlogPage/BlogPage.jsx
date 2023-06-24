@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import "./BlogPage.css";
 import Navbar from "../Navbar/Navbar";
 import user from "../../assets/account.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BlogPage = () => {
   const { id } = useParams();
@@ -39,6 +41,12 @@ const BlogPage = () => {
     setComments(com);
   };
 
+  const showToastMessage = () => {
+    toast.success('Comment Added', {
+        position: toast.POSITION.TOP_RIGHT
+    });
+};
+
   const addComment = () => {
     if (
       name !== "" &&
@@ -57,6 +65,7 @@ const BlogPage = () => {
           body: comment,
         };
         setComments([newComment, ...comments]);
+        showToastMessage();
       } else {
         alert("please enter correct email");
       }
@@ -71,9 +80,15 @@ const BlogPage = () => {
       localStoragePosts = localStoragePosts.filter((post) => {
         return post.id !== blog.id;
       });
+      toast.info('Removed from Favourites', {
+                position: toast.POSITION.BOTTOM_RIGHT
+            });
       setFav(false);
     } else {
       localStoragePosts.push(blog);
+            toast.success('Added to Favourites', {
+                position: toast.POSITION.BOTTOM_RIGHT
+            });
       setFav(true);
     }
     localStorage.setItem("favPosts", JSON.stringify(localStoragePosts));
@@ -156,6 +171,7 @@ const BlogPage = () => {
         <button className="comment-btn" onClick={addComment}>
           Add a Comment
         </button>
+        <ToastContainer />
         <hr />
       </div>
       <div className="comment-box">
