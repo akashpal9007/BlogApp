@@ -7,9 +7,9 @@ const Navbar = () => {
     <div className='Navbar'>
         <div className='Navbar-l'><Link to="/" style={{textDecoration:"none", color:"white"}}>Blog</Link></div>
         <div className='Navbar-r'>
-            <div>About</div>
-            <div><Link to='/fav' style={{textDecoration:"none", color:"white"}}>Favourites</Link></div>
-            <div>Contact Us</div>
+            <div className='about'>About</div>
+            <div className='fav-nav'><Link to='/fav' style={{textDecoration:"none", color:"white"}}>Favourites</Link></div>
+            <div className='contact'>Contact Us</div>
         </div>
     </div>
   )

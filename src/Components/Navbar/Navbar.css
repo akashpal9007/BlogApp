@@ -16,3 +16,15 @@
 .Navbar-r>div{
     margin-right: 1.5rem;
 }
+
+@media only screen and (max-width: 600px) {
+    .about, .contact{
+        display: none;
+    }
+    .fav-nav{
+        font-size: 1.3rem;
+    }
+    .Navbar-r>div{
+        margin-right: 0rem;
+    }
+  }

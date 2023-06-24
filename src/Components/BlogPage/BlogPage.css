@@ -102,3 +102,14 @@
     border-radius: 7px;
     font-size: 1.1rem;
 }
+
+.btn-fav:hover{
+    background-color: black;
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .blogPage-title{
+        font-size: 1.6rem;
+    }
+  }
