@@ -14,7 +14,6 @@ const Pagination = ({ postsPerPage, totalPosts, currentPage, setCurrentPage }) =
        pageNumbers.push(i);
     }
     
-    console.log(currentPage);
     return (
        <div className="pagination-container">
          <button className='btn-prev' onClick={handlePrev}>prev</button>
