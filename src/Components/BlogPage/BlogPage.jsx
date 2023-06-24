@@ -115,11 +115,11 @@ const BlogPage = () => {
       <Navbar />
       <div className="blogPage">
         <div className="blogPage-Topbtn">
-          <button className="btn-home">
             <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+          <button className="btn-home">
               Go Home
-            </Link>
           </button>
+            </Link>
           <button className="btn-fav" onClick={handleFav}>
             {fav ? "Remove from Favourites" : "Add to Favourites"}
           </button>

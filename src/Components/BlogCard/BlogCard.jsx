@@ -16,7 +16,8 @@ const BlogCard = ({id, title, author, content}) => {
             <div className='Blog-author'>{'- '+author}</div>
             <div className='Blog-content'>{content.split(" ").splice(0,10).join(" ")+"..."}</div>
         </div>
-          <button className='readMore-btn' onClick={()=>handleReadMore(id)}><Link to={`/posts/${id}`} className="readMore-link" style={{textDecoration:"none", color:"black"}}>Read More </Link></button>
+        <Link to={`/posts/${id}`} className="readMore-link" style={{textDecoration:"none", color:"black"}}>
+          <button className='readMore-btn' onClick={()=>handleReadMore(id)}>Read More </button></Link>
     </div>
   )
 }
