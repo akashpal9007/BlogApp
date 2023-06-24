@@ -1,0 +1,19 @@
+.pagination-container{
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}
+.pagination-container>button{
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background: none;
+    border: 1px solid cadetblue;
+    color: cadetblue;
+    cursor: pointer;
+}
+.btn-prev{
+    border-radius: 1rem 0 0 1rem;
+}
+.btn-next{
+    border-radius: 0 1rem 1rem 0;
+}

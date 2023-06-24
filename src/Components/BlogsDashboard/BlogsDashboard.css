@@ -1,0 +1,8 @@
+.BlogPosts{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.BlogDashboard{
+    background-color: #f7f3ef;
+}
