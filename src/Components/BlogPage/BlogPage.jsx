@@ -10,6 +10,9 @@ const BlogPage = () => {
   const [blog, setBlog] = useState();
   const [authors, setAuthors] = useState([]);
   const [comments, setComments] = useState([]);
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [comment, setComment] = useState();
 
   const fetchPost = async () => {
     const res = await axios.get(
@@ -32,6 +35,25 @@ const BlogPage = () => {
       return user;
     })
     setComments(com)
+  }
+
+  const addComment = () => {
+    if(name !== '' && name !== undefined && email !== '' && email !== undefined  && comment !== '' && comment !== undefined ){
+        if(/\S+@\S+\.\S+/.test(email)){
+          let newComment = {
+            id:comments.length+1,
+            name: name,
+            email: email,
+            body: comment
+          }       
+          let newData = [newComment,...comments]
+          setComments(newData);  
+        }else{
+            alert('please enter correct email')
+        }
+    }else{
+        alert('please fill all the fields');
+    }
   }
 
   useEffect(() => {
@@ -65,10 +87,19 @@ const BlogPage = () => {
         <div>loading</div>
       )}
     </div>
+    <div className="Comment-Form">
+        <div className="Comment-Form-head">Comment Form</div>
+        <div className="Comment-Form-input">
+        <input type="text" placeholder="Name" value={name} onChange={(e)=>(setName(e.target.value))}/>
+        <input type="text" placeholder="Email" value={email} onChange={(e)=>(setEmail(e.target.value))}/>
+        <textarea type="text" placeholder="Add a Comment..." value={comment} onChange={(e)=>(setComment(e.target.value))}/>
+        </div>
+        <button className="comment-btn" onClick={addComment}>Add a Comment</button>
+        <hr />
+    </div>
     <div className="comment-box">
         <div className="comment-head-p">
             <div className="comment-head">{comments.length} Comments</div>
-            <button className="comment-btn">Add a Comment</button>
         </div>
     {comments.length !== 0 && comments.map((comment)=>(
         <div className="comment">
